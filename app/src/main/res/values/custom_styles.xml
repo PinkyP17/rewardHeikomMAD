@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="circularImageView">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="rubik" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubikregular</item>
+    </style>
+
+    <style name="rubikBold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubikbold</item>
+    </style>
+
+    <style name="rubikSemiBold" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/rubiksemibold</item>
+    </style>
+</resources>

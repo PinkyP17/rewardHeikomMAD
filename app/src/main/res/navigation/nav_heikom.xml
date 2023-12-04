@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_heikom"
+    app:startDestination="@id/rewardHome">
+
+    <fragment
+        android:id="@+id/rewardHome"
+        android:name="com.pinkyp17.heikom.RewardHome"
+        android:label="RewardHome"
+        tools:layout="@layout/background"/>
+    <fragment
+        android:id="@+id/rewardPage"
+        android:name="com.pinkyp17.heikom.RewardPage"
+        android:label="fragment_reward_page"
+        tools:layout="@layout/fragment_reward_page" />
+    <fragment
+        android:id="@+id/rewardTask"
+        android:name="com.pinkyp17.heikom.RewardTask"
+        android:label="fragment_reward_task"
+        tools:layout="@layout/fragment_reward_task" />
+    <fragment
+        android:id="@+id/rewardRedeem"
+        android:name="com.pinkyp17.heikom.RewardRedeem"
+        android:label="fragment_reward_redeem"
+        tools:layout="@layout/fragment_reward_redeem" />
+    <fragment
+        android:id="@+id/rewardReport"
+        android:name="com.pinkyp17.heikom.RewardReport"
+        android:label="fragment_reward_report"
+        tools:layout="@layout/fragment_reward_report" />
+</navigation>

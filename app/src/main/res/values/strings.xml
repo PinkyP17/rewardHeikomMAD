@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HeiKom</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reward_button_description">Navigate to Reward Report</string>
+</resources>

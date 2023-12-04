@@ -17,33 +17,33 @@
         android:layout_width="135dp"
         android:layout_height="135dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="190dp"
         android:background="@drawable/happy_overdose"
-        android:paddingTop="100dp" />
+        android:paddingTop="10dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="87dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="101dp"
+        android:orientation="vertical"
         android:paddingTop="20dp">
 
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/rewardRedeemText"
-        style="@style/rubikBold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="7dp"
-        android:text="Redeem Your Reward"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/rewardRedeemText"
+            style="@style/rubikBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="7dp"
+            android:text="Report Activity"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         style="@style/rubikBold"
@@ -57,8 +57,37 @@
         android:layout_marginEnd="0dp"
         android:gravity="center"
         android:padding="5dp"
-        android:text="Welcome Wan Ahmad Nigger"
+        android:text="Welcome Wan Ahmad Ni"
         android:textSize="25dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="333dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/deleteReport"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"/>
+
+        <ImageButton
+            android:id="@+id/addReport"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="0" />
+    </LinearLayout>
+
+    />
 
     <!-- Other Views can be added similarly -->
 

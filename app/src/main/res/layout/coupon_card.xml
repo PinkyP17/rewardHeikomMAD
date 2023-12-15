@@ -25,25 +25,28 @@
                 android:id="@+id/IVRewardImage"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:layout_marginVertical="10dp"
                 android:layout_gravity="center"
+                android:layout_marginVertical="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"/>
+                app:srcCompat="@drawable/coupon1" />
 
             <TextView
                 android:id="@+id/TVRewardName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="BLUE ARCHIVE COUPON"
                 android:textColor="@color/black"
-                android:textSize="22sp"/>
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/TVRewardDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Sensei, thank you for taking care of us, here is your reward. Feel free to redeem it on any students!!!"
                 android:textColor="@color/black"
                 app:layout_constraintVertical_bias="0.0" />
 

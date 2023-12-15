@@ -62,21 +62,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="43dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="333dp"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/deleteReport"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_weight="0"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"/>
+            android:layout_weight="0"
+            android:backgroundTint="#d98f95" />
 
         <ImageButton
             android:id="@+id/addReport"
@@ -84,7 +85,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_weight="0" />
+            android:layout_weight="0"
+            android:backgroundTint="#9dd98f"/>
     </LinearLayout>
 
     />

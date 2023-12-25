@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -67,6 +68,28 @@ public class TaskPage extends Fragment {
             }
         });
         */
+
+        //testing the point system
+        TextView pointTextView = view.findViewById(R.id.pointTest);
+        Button addPoint = view.findViewById(R.id.addPoints);
+        // Declare an array to hold the user points
+        final int[] userPoints = { PointManager.getPoints(requireContext(), "userId") };
+
+        // Set the initial points to the TextView
+        pointTextView.setText(String.valueOf(userPoints[0]));
+
+        addPoint.setOnClickListener(v -> {
+            // Increase points when the button is clicked
+            userPoints[0] += 10; // Increase by 10, modify as needed
+
+            // Update points in the SharedPreferences
+            PointManager.setPoints(requireContext(), "userId", userPoints[0]);
+
+            // Update the TextView with the new points
+            pointTextView.setText(String.valueOf(userPoints[0]));
+        });
+
+
         return view;
     }
 

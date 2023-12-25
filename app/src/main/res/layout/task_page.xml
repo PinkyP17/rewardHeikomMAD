@@ -51,6 +51,20 @@
             android:src="@drawable/ba"
             />
     </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pointTest"
+            android:text="Placeholder to test points"
+            />
+
+        <Button
+            android:id="@+id/addPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add Point"
+            />
+
 
             <!-- TextView -->
         <TextView

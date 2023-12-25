@@ -18,7 +18,7 @@
         android:layout_height="135dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="190dp"
-        android:background="@drawable/happy_overdose"
+        android:background="@drawable/majitenshi"
         android:paddingTop="10dp" />
 
     <LinearLayout

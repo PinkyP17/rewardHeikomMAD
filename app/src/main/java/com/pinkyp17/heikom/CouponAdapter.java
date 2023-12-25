@@ -1,3 +1,4 @@
+/*
 package com.pinkyp17.heikom;
 
 import android.view.LayoutInflater;
@@ -51,8 +52,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
         return new CouponViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
+    @Override    public void onBindViewHolder(@NonNull CouponViewHolder holder, int position) {
         // Get the String at the current position in the list
         String currentCoupon = couponList.get(position);
 
@@ -70,3 +70,4 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.CouponView
 }
 
 
+*/

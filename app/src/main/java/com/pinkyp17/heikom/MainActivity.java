@@ -40,20 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
         // Set navigation listener for BottomNavigationView
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.home) {
+            if (item.getItemId() == R.id.bmHome) {
                 // Navigate to the fragment_reward when Home is clicked
-                navController.navigate(R.id.rewardPage);
+                navController.navigate(R.id.rewardHome);
                 return true;
-            } else if (item.getItemId() == R.id.chat) {
-                navController.navigate(R.id.rewardRedeem);
+            } else if (item.getItemId() == R.id.bmReward) {
+                navController.navigate(R.id.rewardReport);
                 return true;
             }
-            else if (item.getItemId() == R.id.reward) {
-            navController.navigate(R.id.rewardReport);
+            else if (item.getItemId() == R.id.bmChat) {
+            navController.navigate(R.id.rewardRedeem);
             return true;
             }
-            else if (item.getItemId() == R.id.info) {
-                navController.navigate(R.id.rewardTask);
+            else if (item.getItemId() == R.id.bmInfo) {
+                navController.navigate(R.id.rewardPage);
                 return true;
             }
 

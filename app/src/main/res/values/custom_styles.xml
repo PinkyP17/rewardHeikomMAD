@@ -16,4 +16,5 @@
     <style name="rubikSemiBold" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/rubiksemibold</item>
     </style>
-</resources>
+
+  </resources>

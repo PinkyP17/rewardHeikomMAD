@@ -31,7 +31,7 @@ public class RewardHome extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setCardModels();
+
 
         //RecyclerView recyclerView = findViewById(R.id.couponRV);
     }

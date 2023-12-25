@@ -56,7 +56,7 @@ public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdap
             super(itemView);
 
             imageView = itemView.findViewById(R.id.IVRewardImage);
-            textTitle = itemView.findViewById(R.id.TVRewardName);
+            textTitle = itemView.findViewById(R.id.TVTaskView);
             textDesc = itemView.findViewById(R.id.TVRewardDescription);
 
         }

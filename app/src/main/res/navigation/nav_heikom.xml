@@ -9,12 +9,12 @@
         android:id="@+id/rewardHome"
         android:name="com.pinkyp17.heikom.RewardHome"
         android:label="RewardHome"
-        tools:layout="@layout/background"/>
+        tools:layout="@layout/activity_main"/>
     <fragment
         android:id="@+id/rewardPage"
-        android:name="com.pinkyp17.heikom.RewardPage"
+        android:name="com.pinkyp17.heikom.TaskPage"
         android:label="fragment_reward_page"
-        tools:layout="@layout/fragment_reward_page" />
+        tools:layout="@layout/task_page" />
     <fragment
         android:id="@+id/rewardTask"
         android:name="com.pinkyp17.heikom.RewardTask"
@@ -23,8 +23,8 @@
     <fragment
         android:id="@+id/rewardRedeem"
         android:name="com.pinkyp17.heikom.RewardRedeem"
-        android:label="fragment_reward_redeem"
-        tools:layout="@layout/fragment_reward_redeem" />
+        android:label="fragment_reward_home"
+        tools:layout="@layout/fragment_reward_home" />
     <fragment
         android:id="@+id/rewardReport"
         android:name="com.pinkyp17.heikom.RewardReport"

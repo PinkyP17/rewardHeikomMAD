@@ -16,6 +16,8 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
     Context context;
     ArrayList<TaskModel> taskModels;
 
+
+
     public AA_TaskAdapter(Context context, ArrayList<TaskModel> taskModels){
         this.context = context;
         this.taskModels = taskModels;
@@ -32,12 +34,36 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull AA_TaskAdapter.MyViewHolder holder, int position) {
-        //assign value to view that we have created
-        holder.textView.setText(taskModels.get(position).getTaskText());
-        holder.imageView.setImageResource(taskModels.get(position).getImageFirst());
-        holder.imageView2.setImageResource(taskModels.get(position).getImageSecond());
+        TaskModel currentTask = taskModels.get(position);
+
+        holder.textView.setText(currentTask.getTaskText());
+        holder.imageView.setImageResource(currentTask.getImageFirst());
+        holder.imageView2.setImageResource(currentTask.getImageSecond());
+
+        //getting value of the int to the class
+        int intValue = currentTask.getPointsVal();
+
+        //binding the double value to textView2
+        holder.bindIntValue(intValue);
+
+        holder.itemView.setAlpha(currentTask.isClicked() ? 0.5f : 1.0f);
+        holder.itemView.setClickable(!currentTask.isClicked());
+        /*
+        holder.itemView.setOnClickListener(v -> {
+            if (!currentTask.isClicked()) {
+                currentTask.setClicked(true);
+                holder.itemView.setAlpha(0.5f); // Update the visual indication
+                holder.itemView.setClickable(false); // Prevent further clicks
+
+                notifyDataSetChanged(); // Update the item's state
+            }
+        });
+
+         */
+
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -48,7 +74,7 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         //grabbing view from recycler view and put data into layout
 
         ImageView imageView, imageView2;
-        TextView textView;
+        TextView textView, textView2;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -57,6 +83,15 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
             imageView = itemView.findViewById(R.id.taskIcon1);
             imageView2 = itemView.findViewById(R.id.taskIcon2);
             textView = itemView.findViewById(R.id.TVTaskView);
+            textView2 = itemView.findViewById(R.id.taskPoints);
+        }
+
+        public void bindIntValue(int value){
+            textView2.setText(String.valueOf(value));
         }
     }
+    public interface PointAdditionListener {
+        void onAddPointClicked(int position, int pointsToAdd);
+    }
+
 }

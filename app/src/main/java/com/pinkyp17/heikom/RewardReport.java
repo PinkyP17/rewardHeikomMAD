@@ -16,26 +16,25 @@ import java.util.List;
 
 public class RewardReport extends Fragment {
 
-    private RecyclerView recyclerView;
-    //private PointsAdapter pointsAdapter;
+
+    //declaring arraylist for the recycler view
+    ArrayList<ActivitiesModels> activitiesModels = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reward_report, container, false);
 
-        // Find the RecyclerView in your layout
-        recyclerView = view.findViewById(R.id.recyclerViewPoints);
-        //declare adapter
-        //pointsAdapter = new PointsAdapter(generatePointList());
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewPoints);
+        setActivitiesModel();
 
-        /*
-        // Set up the layout manager for the RecyclerView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(pointsAdapter);
+        AA_ActivitiesAdapter adapter = new AA_ActivitiesAdapter(getActivity(), activitiesModels);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-         */
+
+
+
         TextView pointTextView = view.findViewById(R.id.redeemPoints);
         ImageButton pointButton = view.findViewById(R.id.rewardReportButton);
         final int[] userPoints = { PointManager.getPoints(requireContext(), "userId") };
@@ -53,18 +52,11 @@ public class RewardReport extends Fragment {
         return view;
     }
 
-    /*
-    private List<PointItems> generatePointList() {
-        List<PointItems> items = new ArrayList<>();
+    private void setActivitiesModel(){
+        Activities activity = new Activities();
 
-        items.add(new PointItems("100 points"));
-        items.add(new PointItems("100 points"));
-        items.add(new PointItems("100 points"));
-        items.add(new PointItems("100 points"));
-
-        System.out.println("add success");
-        return items;
+        for(int i=0; i< activity.activities.length; i++){
+            activitiesModels.add(new ActivitiesModels(activity.activities[i], activity.points[i]));
+        }
     }
-
-     */
 }

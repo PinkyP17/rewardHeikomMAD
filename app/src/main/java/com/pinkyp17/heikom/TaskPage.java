@@ -72,6 +72,7 @@ public class TaskPage extends Fragment {
         //testing the point system
         TextView pointTextView = view.findViewById(R.id.pointTest);
         Button addPoint = view.findViewById(R.id.addPoints);
+
         // Declare an array to hold the user points
         final int[] userPoints = { PointManager.getPoints(requireContext(), "userId") };
 
@@ -97,7 +98,7 @@ public class TaskPage extends Fragment {
         taskText text = new taskText();
 
         for(int i=0;i< text.taskText.length;i++){
-            taskModel.add(new TaskModel(text.taskText[i],text.icon[i],text.icon2[i]));
+            taskModel.add(new TaskModel(text.taskText[i],text.icon[i],text.icon2[i],text.points[i]));
         }
     }
 
@@ -105,5 +106,7 @@ public class TaskPage extends Fragment {
         String[] taskText = {"Hell go to you","I am fucked", "What the hell"};
         int[] icon = {R.drawable.icon1,R.drawable.icon2,R.drawable.icon3};
         int[] icon2 = {R.drawable.icon1,R.drawable.icon2,R.drawable.icon3};
+
+        int[] points ={300,100,10};
     }
 }

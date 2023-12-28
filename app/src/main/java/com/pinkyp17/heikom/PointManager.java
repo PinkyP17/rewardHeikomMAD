@@ -42,5 +42,8 @@ public class PointManager {
         editor.putInt(userId + POINTS_KEY, points);
         editor.apply();
     }
+
+
+
 }
 

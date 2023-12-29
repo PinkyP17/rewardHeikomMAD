@@ -16,8 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class TaskPage extends Fragment {
 
+public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionListener {
     ArrayList<TaskModel> taskModel = new ArrayList<>();
 
 
@@ -50,9 +50,11 @@ public class TaskPage extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.taskRecycleView);
 
         setTaskModel();
+        String userId = "userId";
+        //AA_TaskAdapter adapter = new AA_TaskAdapter(getActivity(), taskModel, userId);
 
-        AA_TaskAdapter adapter = new AA_TaskAdapter(getActivity(), taskModel);
-
+        AA_TaskAdapter adapter = new AA_TaskAdapter(requireContext(), taskModel, userId);
+        adapter.setPointAdditionListener(this); // Set the listener to this fragment
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -74,7 +76,7 @@ public class TaskPage extends Fragment {
         Button addPoint = view.findViewById(R.id.addPoints);
 
         // Declare an array to hold the user points
-        final int[] userPoints = { PointManager.getPoints(requireContext(), "userId") };
+        final int[] userPoints = {PointManager.getPoints(requireContext(), "userId")};
 
         // Set the initial points to the TextView
         pointTextView.setText(String.valueOf(userPoints[0]));
@@ -93,6 +95,25 @@ public class TaskPage extends Fragment {
 
         return view;
     }
+
+    // Method to update points displayed in TextView
+    private void updatePointsDisplay() {
+        // Update points displayed in TextView (pointTextView)
+        TextView pointTextView = requireView().findViewById(R.id.pointTest);
+        int userPoints = PointManager.getPoints(requireContext(), "userId");
+        pointTextView.setText(String.valueOf(userPoints));
+    }
+
+    public void onAddPointClicked(int position, int pointsToAdd) {
+        // Implement logic to add points for the user
+        String userId = "userId"; // Simulating a user ID for testing purposes
+        PointManager.addPoints(requireContext(), userId, pointsToAdd);
+
+        // Notify any UI changes or perform any actions needed after adding points
+        updatePointsDisplay(); // For example, update points displayed in TextView
+    }
+
+
 
     private void setTaskModel(){
         taskText text = new taskText();

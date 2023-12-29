@@ -16,11 +16,16 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
     Context context;
     ArrayList<TaskModel> taskModels;
 
+    String userId;
+
+    private PointAdditionListener pointAdditionListener;
 
 
-    public AA_TaskAdapter(Context context, ArrayList<TaskModel> taskModels){
+
+    public AA_TaskAdapter(Context context, ArrayList<TaskModel> taskModels, String userId){
         this.context = context;
         this.taskModels = taskModels;
+        this.userId = userId;
     }
 
     @NonNull
@@ -60,6 +65,23 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         });
 
          */
+        holder.itemView.setOnClickListener(v -> {
+            if (!currentTask.isClicked()) {
+                currentTask.setClicked(true);
+
+                int pointsToAdd = currentTask.getPointsVal(); // Get points value from the TaskModel
+
+                // Trigger the interface method to add points, passing position and pointsToAdd
+                if (pointAdditionListener != null) {
+                    pointAdditionListener.onAddPointClicked(position, pointsToAdd);
+                }
+
+                holder.itemView.setAlpha(0.5f); // Update the visual indication
+                holder.itemView.setClickable(false); // Prevent further clicks
+
+                notifyDataSetChanged(); // Update the item's state
+            }
+        });
 
 
     }
@@ -94,4 +116,7 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         void onAddPointClicked(int position, int pointsToAdd);
     }
 
+    public void setPointAdditionListener(PointAdditionListener listener) {
+        this.pointAdditionListener = listener;
+    }
 }

@@ -44,47 +44,28 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         holder.textView.setText(currentTask.getTaskText());
         holder.imageView.setImageResource(currentTask.getImageFirst());
         holder.imageView2.setImageResource(currentTask.getImageSecond());
+        holder.bindIntValue(currentTask.getPointsVal());
 
-        //getting value of the int to the class
-        int intValue = currentTask.getPointsVal();
+        boolean isClicked = currentTask.isClicked(context);
+        holder.itemView.setAlpha(isClicked ? 0.5f : 1.0f);
+        holder.itemView.setClickable(!isClicked);
 
-        //binding the double value to textView2
-        holder.bindIntValue(intValue);
-
-        holder.itemView.setAlpha(currentTask.isClicked() ? 0.5f : 1.0f);
-        holder.itemView.setClickable(!currentTask.isClicked());
-        /*
         holder.itemView.setOnClickListener(v -> {
-            if (!currentTask.isClicked()) {
-                currentTask.setClicked(true);
-                holder.itemView.setAlpha(0.5f); // Update the visual indication
-                holder.itemView.setClickable(false); // Prevent further clicks
+            if (!isClicked) {
+                currentTask.setClicked(context, true);
 
-                notifyDataSetChanged(); // Update the item's state
-            }
-        });
+                int pointsToAdd = currentTask.getPointsVal();
 
-         */
-        holder.itemView.setOnClickListener(v -> {
-            if (!currentTask.isClicked()) {
-                currentTask.setClicked(true);
-
-                int pointsToAdd = currentTask.getPointsVal(); // Get points value from the TaskModel
-
-                // Trigger the interface method to add points, passing position and pointsToAdd
                 if (pointAdditionListener != null) {
                     pointAdditionListener.onAddPointClicked(position, pointsToAdd);
                 }
 
-                holder.itemView.setAlpha(0.5f); // Update the visual indication
-                holder.itemView.setClickable(false); // Prevent further clicks
-
-                notifyDataSetChanged(); // Update the item's state
+                notifyDataSetChanged();
             }
         });
-
-
     }
+
+
 
 
     @Override

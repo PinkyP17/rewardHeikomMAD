@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionListener {
     ArrayList<TaskModel> taskModel = new ArrayList<>();
 
+    AA_TaskAdapter adapter;
 
     //for progress bar
     private int CurrentProgress = 0;
@@ -53,7 +54,7 @@ public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionLi
         String userId = "userId";
         //AA_TaskAdapter adapter = new AA_TaskAdapter(getActivity(), taskModel, userId);
 
-        AA_TaskAdapter adapter = new AA_TaskAdapter(requireContext(), taskModel, userId);
+        adapter = new AA_TaskAdapter(requireContext(), taskModel, userId);
         adapter.setPointAdditionListener(this); // Set the listener to this fragment
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -129,5 +130,13 @@ public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionLi
         int[] icon2 = {R.drawable.icon1,R.drawable.icon2,R.drawable.icon3};
 
         int[] points ={300,100,10};
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }

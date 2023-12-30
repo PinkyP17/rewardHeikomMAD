@@ -59,9 +59,10 @@ public class RewardHome extends Fragment {
         //String[] imageName = getResources().getStringArray(R.array.couponImage);
         String[] cardText = getResources().getStringArray(R.array.couponText);
         String[] cardDesc = getResources().getStringArray(R.array.couponDesc);
+        int[] points = {100,200,300};
 
         for(int i=0; i< cardText.length; i++){
-            cardModels.add(new CardModel(couponImages[i], cardText[i], cardDesc[i]));
+            cardModels.add(new CardModel(couponImages[i], cardText[i], cardDesc[i], points[i]));
         }
     }
 }

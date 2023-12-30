@@ -50,15 +50,32 @@
                 android:textColor="@color/black"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/BtnRedeem"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Redeem"
-                android:textSize="14dp"
-                android:layout_gravity="right"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <TextView
+                    android:id="@+id/couponPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Points are here"
+                    style="@style/rubikBold"
+                    android:textSize="14dp"
+                    android:layout_weight="1"
+                    android:contentDescription="Coupon points"/>
+
+                <Button
+                    android:id="@+id/BtnRedeem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Redeem"
+                    android:textSize="14dp"
+                    android:contentDescription="Redeem the coupon"/>
+            </LinearLayout>
+
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,25 @@ public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdap
         holder.textTitle.setText(cardModels.get(position).getCouponText());
         holder.textDesc.setText(cardModels.get(position).getCouponDesc());
 
+        // Convert int to String before setting it in TextView
+        int points = cardModels.get(position).getPoints();
+        holder.textPoint.setText(String.valueOf(points));
+
+        holder.redeemButton.setOnClickListener(v -> {
+            int pointsToDeduct = cardModels.get(position).getPoints(); // Get points required for this coupon
+
+            String userId = "userId"; // Replace this with your user ID retrieval logic
+
+            // Deduct points (no explicit success check due to the current PointManager method)
+            PointManager.deductPoints(context, userId, pointsToDeduct);
+
+            // Handle UI changes for redemption (show coupon code layout, change button text, etc.)
+            // For example:
+            // showRedeemedLayout(holder.itemView);
+            // holder.redeemButton.setText("Coupon Redeemed");
+            // holder.redeemButton.setEnabled(false);
+        });
+
     }
 
     @Override
@@ -48,16 +68,18 @@ public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdap
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         //grabbing view from recycle view and put the data into the layout
-
+        Button redeemButton;
 
         ImageView imageView;
-        TextView textTitle, textDesc;
+        TextView textTitle, textDesc, textPoint;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.IVRewardImage);
             textTitle = itemView.findViewById(R.id.TVTaskView);
             textDesc = itemView.findViewById(R.id.TVRewardDescription);
+            textPoint = itemView.findViewById(R.id.couponPoints);
+            redeemButton = itemView.findViewById(R.id.BtnRedeem);
 
         }
     }

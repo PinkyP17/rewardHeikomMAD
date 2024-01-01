@@ -1,5 +1,7 @@
 package com.pinkyp17.heikom;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -52,6 +54,45 @@ public class RewardHome extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view; // Return the inflated view, not a new inflation
+    }
+
+    // Save the clicked states of coupons in SharedPreferences
+    private void saveClickedStates() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("ClickedStates", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        for (int i = 0; i < cardModels.size(); i++) {
+            CardModel currentCard = cardModels.get(i);
+            editor.putBoolean("clicked_" + i, currentCard.isClicked());
+        }
+
+        editor.apply();
+    }
+
+    // Load the clicked states of coupons from SharedPreferences
+    private void loadClickedStates() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("ClickedStates", Context.MODE_PRIVATE);
+
+        for (int i = 0; i < cardModels.size(); i++) {
+            boolean isClicked = sharedPreferences.getBoolean("clicked_" + i, false);
+            float alphaValue = sharedPreferences.getFloat("alpha_" + i, 1.0f);
+
+            cardModels.get(i).setClicked(isClicked);
+            cardModels.get(i).setAlphaValue(alphaValue);
+        }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveClickedStates(); // Save clicked states when the fragment is paused
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadClickedStates(); // Load clicked states when the fragment is resumed
     }
 
 

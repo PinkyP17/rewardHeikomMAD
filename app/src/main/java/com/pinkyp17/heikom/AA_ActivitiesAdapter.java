@@ -34,6 +34,7 @@ public class AA_ActivitiesAdapter extends RecyclerView.Adapter<AA_ActivitiesAdap
 
     @Override
     public void onBindViewHolder(@  NonNull AA_ActivitiesAdapter.MyViewHolder holder, int position) {
+        System.out.println(position + " : " + activitiesModels.get(position).toString());
         //assign value to view we created
         holder.activityRep.setText(activitiesModels.get(position).getActivity());
         holder.pointsRep.setText(activitiesModels.get(position).getPoints());

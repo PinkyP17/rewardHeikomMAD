@@ -25,14 +25,19 @@ public class PointManager {
     }
 
     // Method to deduct points from a specific user (if needed)
-    public static void deductPoints(Context context, String userId, int pointsToDeduct) {
+    public static boolean deductPoints(Context context, String userId, int pointsToDeduct) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPoints", Context.MODE_PRIVATE);
         int currentPoints = getPoints(context, userId);
         int updatedPoints = Math.max(0, currentPoints - pointsToDeduct);
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(userId + POINTS_KEY, updatedPoints);
-        editor.apply();
+        if (updatedPoints != currentPoints) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(userId + POINTS_KEY, updatedPoints);
+            editor.apply();
+            return true; // Deduction successful
+        } else {
+            return false; // Insufficient points, deduction failed
+        }
     }
 
     public static void setPoints(Context context, String userId, int points) {

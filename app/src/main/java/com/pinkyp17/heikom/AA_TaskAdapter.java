@@ -1,6 +1,7 @@
 package com.pinkyp17.heikom;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHolder> {
     Context context;
@@ -20,12 +22,19 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
 
     private PointAdditionListener pointAdditionListener;
 
+    private HashSet<Integer> clickedPositions = new HashSet<>();
 
+    private TaskCompletionListener taskCompletionListener;
 
-    public AA_TaskAdapter(Context context, ArrayList<TaskModel> taskModels, String userId){
+    DataManager dataManager = DataManager.getInstance();
+    private int completedTasksCount = 0;
+    private Context applicationContext; // Add this variable
+
+    public AA_TaskAdapter(Context context, ArrayList<TaskModel> taskModels, String userId) {
         this.context = context;
         this.taskModels = taskModels;
         this.userId = userId;
+        this.applicationContext = context.getApplicationContext(); // Assign application context
     }
 
     @NonNull
@@ -46,6 +55,7 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         holder.imageView2.setImageResource(currentTask.getImageSecond());
         holder.bindIntValue(currentTask.getPointsVal());
 
+
         boolean isClicked = currentTask.isClicked(context);
         holder.itemView.setAlpha(isClicked ? 0.5f : 1.0f);
         holder.itemView.setClickable(!isClicked);
@@ -53,16 +63,25 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         holder.itemView.setOnClickListener(v -> {
             if (!isClicked) {
                 currentTask.setClicked(context, true);
+                //updateCompletedTasksCount(); // Update completed task count in DataManager
+                notifyDataSetChanged();
 
                 int pointsToAdd = currentTask.getPointsVal();
-
                 if (pointAdditionListener != null) {
                     pointAdditionListener.onAddPointClicked(position, pointsToAdd);
+                    Log.d("AA_TaskAdapter", "Points added: " + pointsToAdd);
                 }
 
-                notifyDataSetChanged();
+                updateCompletedTasksCount();
+                if (taskCompletionListener != null) {
+                    //taskCompletionListener.onTaskCompleted(completedTasksCount);
+                    Log.d("AA_TaskAdapter", "Task completed. Total completed tasks: " + completedTasksCount);
+                }
+
             }
         });
+
+
     }
 
 
@@ -77,7 +96,7 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
         //grabbing view from recycler view and put data into layout
 
         ImageView imageView, imageView2;
-        TextView textView, textView2;
+        TextView textView, textView2, textView3;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -87,6 +106,7 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
             imageView2 = itemView.findViewById(R.id.taskIcon2);
             textView = itemView.findViewById(R.id.TVTaskView);
             textView2 = itemView.findViewById(R.id.taskPoints);
+            textView3 = itemView.findViewById(R.id.testCompletedTask);
         }
 
         public void bindIntValue(int value){
@@ -99,5 +119,25 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
 
     public void setPointAdditionListener(PointAdditionListener listener) {
         this.pointAdditionListener = listener;
+    }
+
+    public interface TaskCompletionListener {
+        //void onTaskCompleted(int completedTasksCount);
+    }
+
+    public void setTaskCompletionListener(TaskCompletionListener listener) {
+        this.taskCompletionListener = listener;
+    }
+
+    // Method to update completedTasksCount
+    private void updateCompletedTasksCount() {
+        completedTasksCount++;
+        System.out.println("Completed Task Count:" + completedTasksCount);
+        dataManager.saveCompletedTasksCount(applicationContext, completedTasksCount);
+        notifyDataSetChanged(); // Notify RecyclerView about the data change
+    }
+
+    public void setCompletedTasksCount(int count) {
+        this.completedTasksCount = count;
     }
 }

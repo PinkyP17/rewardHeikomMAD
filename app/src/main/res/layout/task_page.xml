@@ -42,6 +42,8 @@
             android:layout_height="15dp"
             android:layout_gravity="right|center"
             android:layout_marginEnd="10dp"
+            android:max="30000"
+            android:progress="0"
             android:progressDrawable="@drawable/custom_progress_bar"/>
 
         <ImageView
@@ -51,33 +53,43 @@
             android:src="@drawable/ba"
             />
     </FrameLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pointTest"
-            android:text="Placeholder to test points"
-            />
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pointTest"
+        android:text="Placeholder to test points"
+        />
 
-        <Button
-            android:id="@+id/addPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="add Point"
-            />
+    <Button
+        android:id="@+id/addPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add Point"
+        />
+        -->
 
 
-            <!-- TextView -->
         <TextView
         style="@style/rubikBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weekly Task"
+        android:textSize="14sp"
         android:layout_gravity="start"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp" />
 
-            <!-- RecyclerView -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed Task"
+        android:id="@+id/testCompletedTask"
+        android:textSize="14sp"
+        />
+
+
         <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskRecycleView"
         android:layout_width="match_parent"

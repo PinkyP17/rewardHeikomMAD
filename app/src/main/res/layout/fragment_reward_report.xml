@@ -115,7 +115,7 @@
         <!-- Circular Progress Bar 2 -->
 
         <com.mikhaellopez.circularprogressbar.CircularProgressBar
-            android:id="@+id/circularProgressBar2"
+            android:id="@+id/weeklyProgressBar"
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:layout_marginStart="80dp"
@@ -140,6 +140,7 @@
 
 
         <ImageView
+            android:id="@+id/dailyIcon"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="82dp"
@@ -170,6 +171,7 @@
             app:cpb_progress="60"/>
 
         <ImageView
+            android:id="@+id/weeklyIcon"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginStart="120dp"

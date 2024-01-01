@@ -3,6 +3,7 @@ package com.pinkyp17.heikom;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,10 +18,15 @@ import java.util.ArrayList;
 
 
 
-public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionListener {
+    public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionListener, DataManager.ActivitySavedListener {
     ArrayList<TaskModel> taskModel = new ArrayList<>();
 
     AA_TaskAdapter adapter;
+
+    //private ArrayList<ActivitiesModels> activitiesModels = new ArrayList<>();
+
+
+    DataManager dataManager = DataManager.getInstance();
 
     //for progress bar
     private int CurrentProgress = 0;
@@ -41,7 +47,20 @@ public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set this fragment as the observer for activity saved events
+        DataManager.getInstance().setActivitySavedListener(this);
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        DataManager.getInstance().setActivitySavedListener(this);
+    }
+
+    @Override
+    public void onActivitySaved() {
+            // Define the behavior when an activity is saved
+            // This method must be implemented as part of the ActivitySavedListener interface
     }
 
     @Override
@@ -51,6 +70,9 @@ public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionLi
         RecyclerView recyclerView = view.findViewById(R.id.taskRecycleView);
 
         setTaskModel();
+
+
+        System.out.println("Task Model Size:" + taskModel.size());
         String userId = "userId";
         //AA_TaskAdapter adapter = new AA_TaskAdapter(getActivity(), taskModel, userId);
 
@@ -60,60 +82,38 @@ public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionLi
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         progressBar = view.findViewById(R.id.progressBar);
-        /*startProgress = view.findViewById(R.id.addProgress);
+        //final int[] userPoints = {PointManager.getPoints(requireContext(), "userId")};
+        int userPoints = PointManager.getPoints(requireContext(), "userId"); // Fetch the user's points as an integer
+        progressBar.setMax(30000);
 
-        startProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CurrentProgress = CurrentProgress + 10;
-                progressBar.setProgress(CurrentProgress);
-                progressBar.setMax(100);
-            }
-        });
-        */
-
-        //testing the point system
-        TextView pointTextView = view.findViewById(R.id.pointTest);
-        Button addPoint = view.findViewById(R.id.addPoints);
-
-        // Declare an array to hold the user points
-        final int[] userPoints = {PointManager.getPoints(requireContext(), "userId")};
-
-        // Set the initial points to the TextView
-        pointTextView.setText(String.valueOf(userPoints[0]));
-
-        addPoint.setOnClickListener(v -> {
-            // Increase points when the button is clicked
-            userPoints[0] += 10; // Increase by 10, modify as needed
-
-            // Update points in the SharedPreferences
-            PointManager.setPoints(requireContext(), "userId", userPoints[0]);
-
-            // Update the TextView with the new points
-            pointTextView.setText(String.valueOf(userPoints[0]));
-        });
-
+        dataManager.saveTotalTask(taskModel.size());
+        setActivitiesModel();
+        adapter.notifyDataSetChanged();
 
         return view;
     }
 
-    // Method to update points displayed in TextView
-    private void updatePointsDisplay() {
-        // Update points displayed in TextView (pointTextView)
-        TextView pointTextView = requireView().findViewById(R.id.pointTest);
-        int userPoints = PointManager.getPoints(requireContext(), "userId");
-        pointTextView.setText(String.valueOf(userPoints));
-    }
 
     public void onAddPointClicked(int position, int pointsToAdd) {
         // Implement logic to add points for the user
         String userId = "userId"; // Simulating a user ID for testing purposes
         PointManager.addPoints(requireContext(), userId, pointsToAdd);
 
-        // Notify any UI changes or perform any actions needed after adding points
-        updatePointsDisplay(); // For example, update points displayed in TextView
+        // Update the clicked status for the respective task
+        TaskModel task = taskModel.get(position);
+        task.setClicked(true); // Assuming the task was clicked
+        adapter.notifyItemChanged(position); // Update the RecyclerView item
+
+        // Update the progress bar with the new points
+        updateProgressBar();
     }
 
+
+    private void updateProgressBar() {
+        String userId = "userId"; // Simulating a user ID for testing purposes
+        int userPoints = PointManager.getPoints(requireContext(), userId);
+        progressBar.setProgress(userPoints);
+    }
 
 
     private void setTaskModel(){
@@ -124,18 +124,27 @@ public class TaskPage extends Fragment implements AA_TaskAdapter.PointAdditionLi
         }
     }
 
-    class taskText{
-        String[] taskText = {"Hell go to you","I am fucked", "What the hell"};
-        int[] icon = {R.drawable.icon1,R.drawable.icon2,R.drawable.icon3};
-        int[] icon2 = {R.drawable.icon1,R.drawable.icon2,R.drawable.icon3};
+    //fetch activities from task and then put it into the the activitiesModel
+    private void setActivitiesModel() {
+        for (TaskModel task : taskModel) {
+            boolean isClicked = task.isClicked(requireContext());
 
-        int[] points ={300,100,10};
+            if (isClicked && !DataManager.getInstance().isActivityAlreadySaved(task.getTaskText())) { // Check if already saved
+                dataManager.saveActivity(task.getTaskText(), String.valueOf(task.getPointsVal()));
+            }
+
+        }
     }
+
+
+
 
     @Override
     public void onResume() {
         super.onResume();
         if (adapter != null) {
+            int completedTaskCount = DataManager.getInstance().getCompletedTasksCount(this.getContext());
+            adapter.setCompletedTasksCount(completedTaskCount);
             adapter.notifyDataSetChanged();
         }
     }

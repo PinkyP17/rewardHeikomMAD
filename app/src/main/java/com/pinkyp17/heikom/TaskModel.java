@@ -57,9 +57,10 @@ public class TaskModel {
     }
 
     private String getId() {
-        // Implement a unique identifier logic here
-        // Example: return a unique ID based on the task's properties
         return taskText + "_" + pointsVal; // This should be a unique identifier for each task
+    }
+    public void setClicked(boolean clicked) {
+        this.isClicked = clicked;
     }
 }
 

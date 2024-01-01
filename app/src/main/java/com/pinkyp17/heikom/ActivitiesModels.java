@@ -3,10 +3,13 @@ package com.pinkyp17.heikom;
 public class ActivitiesModels {
     String activityRep, pointsRep;
 
+    int destinationId;
+
 
     public ActivitiesModels(String activity, String points) {
         this.activityRep = activity;
         this.pointsRep = points;
+        destinationId = 1;
     }
 
     public String getActivity() {
@@ -15,5 +18,9 @@ public class ActivitiesModels {
 
     public String getPoints() {
         return pointsRep;
+    }
+
+    public int getDestinationId() {
+        return destinationId;
     }
 }

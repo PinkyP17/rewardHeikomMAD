@@ -10,24 +10,55 @@
         android:name="com.pinkyp17.heikom.RewardHome"
         android:label="RewardHome"
         tools:layout="@layout/activity_main"/>
+
     <fragment
         android:id="@+id/rewardPage"
         android:name="com.pinkyp17.heikom.TaskPage"
         android:label="fragment_reward_page"
         tools:layout="@layout/task_page" />
+
     <fragment
         android:id="@+id/testDatabase"
         android:name="com.pinkyp17.heikom.TestDatabase"
         android:label="Test Database"
         tools:layout="@layout/fragment_test_database"/>
+
     <fragment
         android:id="@+id/rewardRedeem"
         android:name="com.pinkyp17.heikom.RewardRedeem"
         android:label="fragment_reward_home"
         tools:layout="@layout/fragment_reward_home" />
+
     <fragment
         android:id="@+id/rewardReport"
         android:name="com.pinkyp17.heikom.RewardReport"
         android:label="fragment_reward_report"
         tools:layout="@layout/fragment_reward_report" />
+
+    <!-- Define actions for fragment transitions -->
+
+    <action
+        android:id="@+id/action_rewardHome_to_rewardPage"
+        app:destination="@id/rewardPage"
+        app:popUpTo="@id/rewardHome"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_rewardPage_to_testDatabase"
+        app:destination="@id/testDatabase"
+        app:popUpTo="@id/rewardPage"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_rewardPage_to_rewardRedeem"
+        app:destination="@id/rewardRedeem"
+        app:popUpTo="@id/rewardPage"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_rewardPage_to_rewardReport"
+        app:destination="@id/rewardReport"
+        app:popUpTo="@id/rewardPage"
+        app:popUpToInclusive="true" />
+
 </navigation>

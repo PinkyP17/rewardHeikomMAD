@@ -166,5 +166,26 @@ public class FirebasePointManager {
         void onPointFetchSuccess(int points);
         void onPointFetchFailure(String message);
     }
+
+    public void incrementTasksDone(String userName) {
+        usersRef.child(userName).child("tasksDone").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Integer currentTasksDone = dataSnapshot.getValue(Integer.class);
+                    if (currentTasksDone == null) currentTasksDone = 0;
+                    usersRef.child(userName).child("tasksDone").setValue(currentTasksDone + 1);
+                } else {
+                    usersRef.child(userName).child("tasksDone").setValue(1); // If tasksDone doesn't exist, set it to 1
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+    }
+
 }
 

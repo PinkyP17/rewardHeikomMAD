@@ -30,6 +30,9 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
     private int completedTasksCount = 0;
     private Context applicationContext; // Add this variable
 
+    //tetsting firebase
+    private  FirebasePointManager firebasePointManager = new FirebasePointManager();
+
     public AA_TaskAdapter(Context context, ArrayList<TaskModel> taskModels, String userId) {
         this.context = context;
         this.taskModels = taskModels;
@@ -69,6 +72,8 @@ public class AA_TaskAdapter extends RecyclerView.Adapter<AA_TaskAdapter.MyViewHo
                 int pointsToAdd = currentTask.getPointsVal();
                 if (pointAdditionListener != null) {
                     pointAdditionListener.onAddPointClicked(position, pointsToAdd);
+                    firebasePointManager.addPointsToUser("Nahida", pointsToAdd);
+                    firebasePointManager.incrementTasksDone("Nahida");
                     Log.d("AA_TaskAdapter", "Points added: " + pointsToAdd);
                 }
 

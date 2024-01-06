@@ -15,11 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+
 public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdapter.MyViewHolder> {
     Context context;
     ArrayList<CardModel> cardModels;
 
     private int completedTasks = 0;
+
+    private FirebasePointManager firebasePointManager = new FirebasePointManager();
+
 
     public AA_CouponCardAdapter(Context context, ArrayList<CardModel> cardModels){
         this.context = context;
@@ -67,6 +71,9 @@ public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdap
 
                     // Increment completedTasks upon successful redemption
                     completedTasks++;
+
+                    // Call the FirebasePointManager to deduct points
+                    firebasePointManager.removePointsFromUser("Nahida", points);
 
                     // Create and show the coupon details dialog
                     CouponDetailsDialog dialog = new CouponDetailsDialog(context, position); // Pass the position

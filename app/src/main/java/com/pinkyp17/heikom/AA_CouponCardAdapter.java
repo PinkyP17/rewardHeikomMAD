@@ -1,6 +1,7 @@
 package com.pinkyp17.heikom;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,10 @@ public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdap
 
                     // Increment completedTasks upon successful redemption
                     completedTasks++;
-
+                    // Create and show the coupon details dialog
+                    CouponDetailsDialog dialog = new CouponDetailsDialog(context, currentCard); // Pass any data you want to display
+                    //showCouponDetailsDialog(position);
+                    dialog.show();
                     // Update the completion status of the task
                     currentCard.setClicked(true);
 
@@ -107,6 +111,8 @@ public class AA_CouponCardAdapter extends RecyclerView.Adapter<AA_CouponCardAdap
 
         }
     }
+
+
 
 
 }

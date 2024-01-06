@@ -12,86 +12,101 @@
 
     <!-- Text: Redeem Your Reward -->
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/circleFrame"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="190dp"
-        android:background="@drawable/majitenshi"
-        android:paddingTop="10dp" />
+    <!-- FrameLayout below LinearLayout -->
+    <FrameLayout
+        android:layout_width="388dp"
+        android:layout_height="178dp"
+        >
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="101dp"
-        android:orientation="vertical"
-        android:paddingTop="20dp">
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="360dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="27dp"
+            android:hint="First Name"
+            android:paddingLeft="20dp" />
 
+        <EditText
+            android:id="@+id/userPoints"
+            android:layout_width="360dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="27dp"
+            android:hint="Put your points"
+            android:paddingLeft="20dp" />
 
-        <TextView
-            android:id="@+id/rewardRedeemText"
-            style="@style/rubikBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="7dp"
-            android:text="Report Activity"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+    </FrameLayout>
 
-    <TextView
-        style="@style/rubikBold"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/sentButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="0dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Welcome Wan Ahmad Ni"
-        android:textSize="25dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="202dp"
+        android:layout_marginBottom="491dp"
+        android:text="Submit"
+        android:textSize="14sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="333dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+    <FrameLayout
+        android:layout_width="388dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="300dp"
+        >
 
-        <ImageButton
-            android:id="@+id/deleteReport"
-            android:layout_width="50dp"
+        <EditText
+            android:id="@+id/retrieveUser"
+            android:layout_width="360dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_weight="0"
-            android:backgroundTint="#d98f95" />
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="27dp"
+            android:hint="The name will be here"
+            android:paddingLeft="20dp" />
 
-        <ImageButton
-            android:id="@+id/addReport"
-            android:layout_width="50dp"
+        <EditText
+            android:id="@+id/retrievePoint"
+            android:layout_width="360dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_weight="0"
-            android:backgroundTint="#9dd98f"/>
-    </LinearLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="27dp"
+            android:hint="The points will be shown here"
+            android:paddingLeft="20dp" />
 
-    />
+    </FrameLayout>
 
-    <!-- Other Views can be added similarly -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="169dp"
+        android:text="Logon"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/addingPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="107dp"
+        android:text="Go test"
+        android:textSize="14sp" />
 
 </RelativeLayout>
 

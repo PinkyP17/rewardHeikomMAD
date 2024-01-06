@@ -1,6 +1,4 @@
 package com.pinkyp17.heikom;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -26,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
-public class RewardReport extends Fragment implements AA_TaskAdapter.TaskCompletionListener{
+public class RewardReport extends Fragment implements AA_TaskAdapter.TaskCompletionListener, DataManager.ActivitySavedListener {
 
 
     //declaring arraylist for the recycler view
@@ -44,10 +42,16 @@ public class RewardReport extends Fragment implements AA_TaskAdapter.TaskComplet
 
     private static final String ACHIEVEMENT_TIMESTAMP_KEY = "achievementTimestamp";
 
+    // Declare the adapter as a class-level variable
+    private AA_ActivitiesAdapter adapter;
+
 
     private CircularProgressBar circularProgressBar;
 
     DataManager dataManager = DataManager.getInstance();
+
+
+
 
     @Override
     public void onResume() {
@@ -104,7 +108,7 @@ public class RewardReport extends Fragment implements AA_TaskAdapter.TaskComplet
         for(int i=0;i<activitiesModels.size();i++){
             System.out.println(activitiesModels);
         }
-        AA_ActivitiesAdapter adapter = new AA_ActivitiesAdapter(getActivity(), activitiesModels);
+        adapter = new AA_ActivitiesAdapter(requireContext(), activitiesModels);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -162,7 +166,17 @@ public class RewardReport extends Fragment implements AA_TaskAdapter.TaskComplet
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkAndShowDailyLoginToast();
+        DataManager.getInstance().setActivitySavedListener(this); // Set this fragment as the observer for activity saved events
+        checkAndShowDailyLoginToast(); // Check for daily login achievements
+    }
+
+    @Override
+    public void onActivitySaved() {
+        activitiesModels.clear(); // Clear the current list of activities
+        activitiesModels.addAll(DataManager.getInstance().getClickedTask()); // Get the latest activities
+        if (adapter != null) {
+            adapter.notifyDataSetChanged(); // Notify adapter of data changes
+        }
     }
 
     @Override

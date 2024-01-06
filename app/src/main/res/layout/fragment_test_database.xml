@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/testDatabasePart"
+    tools:context=".TestDatabase">
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="27dp"
+        android:hint="Put the name"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/secondName"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="27dp"
+        android:hint="Put the father name"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/pointsInput"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="27dp"
+        android:hint="Put points"
+        android:paddingLeft="20dp" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="200dp"
+        />
+
+
+    <EditText
+        android:id="@+id/getFirstName"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="27dp"
+        android:hint="The first name fetch is here"
+        android:paddingLeft="20dp" />
+
+    <EditText
+        android:id="@+id/getPoints"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="27dp"
+        android:hint="Point fetch will be here"
+        android:paddingLeft="20dp" />
+
+    <Button
+        android:id="@+id/fetchUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Data"
+        android:layout_marginTop="350dp"
+    />
+
+    <EditText
+        android:id="@+id/pointsAddingTest"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="27dp"
+        android:hint="Point changes will be shown here"
+        android:paddingLeft="20dp" />
+
+    <Button
+        android:id="@+id/addPointsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Point"
+        android:layout_marginTop="450dp"
+        />
+
+    <Button
+        android:id="@+id/deductingPointBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Minus point"
+        android:layout_marginTop="500dp"
+        />
+</FrameLayout>
+

@@ -16,10 +16,10 @@
         android:label="fragment_reward_page"
         tools:layout="@layout/task_page" />
     <fragment
-        android:id="@+id/rewardTask"
-        android:name="com.pinkyp17.heikom.RewardTask"
-        android:label="fragment_reward_task"
-        tools:layout="@layout/fragment_reward_task" />
+        android:id="@+id/testDatabase"
+        android:name="com.pinkyp17.heikom.TestDatabase"
+        android:label="Test Database"
+        tools:layout="@layout/fragment_test_database"/>
     <fragment
         android:id="@+id/rewardRedeem"
         android:name="com.pinkyp17.heikom.RewardRedeem"
